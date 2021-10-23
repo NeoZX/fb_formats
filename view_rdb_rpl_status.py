@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from replication_status_file import ReplicationStatusFile
+from rdb_replication_status_file import RdbReplicationStatusFile
 from sys import argv
 
 if __name__ == '__main__':
@@ -9,7 +9,7 @@ if __name__ == '__main__':
         print("Usage: {} <replication_log_file>".format(argv[0]))
         exit(1)
 
-    status_file = ReplicationStatusFile.from_file(argv[1])
+    status_file = RdbReplicationStatusFile.from_file(argv[1])
 
     print('= HEADERS ========================================')
     print('Last processed journal : ', status_file.header.sequence)

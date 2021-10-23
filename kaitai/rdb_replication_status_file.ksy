@@ -1,5 +1,5 @@
 meta:
-  id: replication_status_file
+  id: rdb_replication_status_file
   title: Firebird replication status file version 1 and 2
   application: rdb_smp_server, rdbserver
   endian: le
