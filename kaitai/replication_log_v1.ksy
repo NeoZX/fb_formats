@@ -90,6 +90,7 @@ types:
             'tags::changegenerator2': change_generator2
             'tags::createdatabase': isc_dpb_data
             'tags::executestatementintl': tra_exec_intl
+            'tags::describetable': describetable
   att:
     seq:
       - id: att
@@ -342,6 +343,38 @@ types:
         type: u4
       - id: data
         size: length
+  describetable:
+    seq:
+      - id: table_name_length
+        type: u4
+      - id: table_name
+        type: str
+        encoding: ASCII
+        size: table_name_length
+      - id: format_count
+        type: u4
+      - id: format_length
+        type: u4
+      - id: formats
+        type: formats
+  formats:
+    seq:
+      - id: format
+        type: format
+        repeat: expr
+        repeat-expr: _parent.format_count
+  format:
+    seq:
+      - id: name_length
+        type: u4
+      - id: name
+        type: str
+        encoding: ASCII
+        size: name_length
+      - id: desc_length
+        type: u4
+      - id: desc
+        size: desc_length
 enums:
   journal_states:
     0: free
@@ -371,6 +404,7 @@ enums:
     20: changegenerator2
     21: createdatabase
     22: executestatementintl
+    23: describetable
   charsets:
     0: none
     1: binary
