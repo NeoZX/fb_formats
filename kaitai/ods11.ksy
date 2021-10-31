@@ -34,12 +34,11 @@ types:
             'page_type::transaction_inventory_page': transaction_inventory_page
             'page_type::pointer_page': pointer_page
             'page_type::data_page': data_page
-            #'page_type::index_root_page':
-            #'page_type::index_b_tree_page':
+            'page_type::index_root_page': index_root_page
             'page_type::index_b_tree_page': index_b_tree_page
             'page_type::blob_page': blob_page_flags
             'page_type::generator_page': generator_page
-            #'page_type::write_ahead_log':
+            'page_type::write_ahead_log': write_ahead_log
   page_header:
     seq:
       - id: type
@@ -142,7 +141,9 @@ types:
         size: 12
         doc: SLONG[3]
       - id: clumplets
-        type: hdr_clumplets
+        type: hdr_clumplet
+        repeat: until
+        repeat-until: _.type == hdr_clumplet_type::end
   page_inventory_page:
     seq:
       - id: pip_min
@@ -188,15 +189,37 @@ types:
       - id: count
         type: u2
       - id: records
-        type: dpr_records
+        type: dpr_record
+        repeat: expr
+        repeat-expr: count
   index_root_page:
     seq:
       - id: relation
         type: u2
+        doc: 'Releation id'
       - id: count
         type: u2
-        doc: 'number of indices'
-        #struct irt_repeat_ods11
+        doc: 'Number of indices'
+      - id: repeat_ods11
+        type: repeat_ods11
+        repeat: expr
+        repeat-expr: count
+        #struct irt_repeat
+  repeat_ods11:
+    seq:
+      - id: root
+        type: s4
+      - id: transaction
+        type: s4
+      - id: desc
+        type: u2
+        doc: 'Offset to key descriptions'
+      - id: keys
+        type: u1
+        doc: 'Number of keys in index'
+      - id: flags
+        size: 8
+        type: irt_flags
   index_b_tree_page:
     seq:
       - id: sibling
@@ -242,10 +265,49 @@ types:
         type: s2
       - id: waste5
         type: s2
-      - id: values
-        type: values
-        doc: 'generator vector'
-  #write_ahead_log:
+      - id: value
+        type: s8
+        repeat: eos
+  write_ahead_log:
+    seq:
+      - id: flags
+        type: s4
+      - id: log_cp_1
+        type: ctrl_pt
+      - id: log_cp_2
+        type: ctrl_pt
+      - id: log_file
+        type: ctrl_pt
+      - id: next_page
+        type: s4
+        doc: 'Next log page'
+      - id: mod_tip
+        type: s4
+        doc: 'tip of modify transaction'
+      - id: mod_tid
+        type: s4
+        doc: 'transaction id of modify process'
+      - id: creation_date
+        type: isc_timestamp
+      - id: free
+        type: s4
+        repeat: expr
+        repeat-expr: 4
+      - id: end
+        type: u1
+      - id: data
+        type: u1
+        repeat: eos
+  ctrl_pt:
+    seq:
+      - id: seqno
+        type: s4
+      - id: offset
+        type: s4
+      - id: p_offset
+        type: s4
+      - id: fn_length
+        type: s2
   header_flags:
     seq:
       - id: active_shadow
@@ -273,24 +335,12 @@ types:
         enum: backup_mask
       - id: shutdown_mask_full
         type: b1
-  dpr_records:
-    seq:
-      - id: record
-        type: dpr_record
-        repeat: expr
-        repeat-expr: _parent.count
   dpr_record:        
     seq:
       - id: offset
         type: u2
       - id: length
         type: u2
-  hdr_clumplets:
-    seq:
-      - id: clumplet
-        type: hdr_clumplet
-        repeat: until
-        repeat-until: _.type == hdr_clumplet_type::end
   hdr_clumplet:
     seq:
       - id: type
@@ -300,15 +350,22 @@ types:
         type: u1
       - id: data
         size: length
-  values:
+  irt_flags:
     seq:
-      - id: value
-        type: value
-        repeat: eos
-  value:
-    seq:
-      - id: value
-        type: s8
+      - id: unique
+        type: b1
+      - id: descending
+        type: b1
+      - id: in_progress
+        type: b1
+      - id: foreign
+        type: b1
+      - id: primary
+        type: b1
+      - id: expression
+        type: b1
+      - id: complete_segs
+        type: b1
   isc_timestamp:
     seq:
       - id: isc_date
