@@ -1,11 +1,11 @@
 meta:
   id: ods11
-  title: Red Database 2.6 format ODS11.x
-  application: rdb_inet_server
+  title: Firebird 2.X and Red Database 2.X format ODS11
+  application: firebird
   endian: le
   bit-endian: le
 doc: | 
-  Red Database file formats
+  Firebird file formats
 doc-ref: src/jrd/ods.h
 seq:
   - id: pages
@@ -26,7 +26,7 @@ types:
       - id: header
         type: page_header
       - id: data
-        type: 
+        type:
           switch-on: header.type
           cases:
             'page_type::header_page': header_page
@@ -36,7 +36,7 @@ types:
             'page_type::data_page': data_page
             'page_type::index_root_page': index_root_page
             'page_type::index_b_tree_page': index_b_tree_page
-            'page_type::blob_page': blob_page_flags
+            'page_type::blob_page': blob_page
             'page_type::generator_page': generator_page
             'page_type::write_ahead_log': write_ahead_log
   page_header:
@@ -46,19 +46,19 @@ types:
         enum: page_type
       - id: flags
         size: 1
-        type: 
+        type:
           switch-on: type
           cases:
-            #'page_type::header_page': 
+            #'page_type::header_page':
             #'page_type::page_inventory_page':
-            #'page_type::transaction_inventory_page': 
+            #'page_type::transaction_inventory_page':
             'page_type::pointer_page': pointer_page_flags
             'page_type::data_page': data_page_flags
-            #'page_type::index_root_page': 
-            #'page_type::index_b_tree_page': 
+            #'page_type::index_root_page':
+            #'page_type::index_b_tree_page':
             'page_type::index_b_tree_page': index_b_tree_page_flags
-            #'page_type::blob_page': 
-            #'page_type::generator_page': 
+            'page_type::blob_page': blob_page_flags
+            #'page_type::generator_page':
             #'page_type::write_ahead_log':
       - id: checksum
         type: u2
@@ -68,7 +68,7 @@ types:
       - id: scn
         type: u4
         doc: Used by nbackup
-      - id: reserved
+      - id: page_no
         type: u4
   pointer_page_flags:
     seq:
@@ -86,6 +86,20 @@ types:
   index_b_tree_page_flags:
     seq:
       - id: dont_gc
+        type: b1
+      - id: not_propagated
+        type: b1
+      - id: unused3
+        type: b1
+      - id: descending
+        type: b1
+      - id: all_record_number
+        type: b1
+      - id: large_keys
+        type: b1
+      - id: jump_info
+        type: b1
+      - id: released
         type: b1
   blob_page_flags:
     seq:
@@ -200,12 +214,11 @@ types:
       - id: count
         type: u2
         doc: 'Number of indices'
-      - id: repeat_ods11
-        type: repeat_ods11
+      - id: irt_rpt
+        type: irt_rpt
         repeat: expr
         repeat-expr: count
-        #struct irt_repeat
-  repeat_ods11:
+  irt_rpt:
     seq:
       - id: root
         type: s4
@@ -218,7 +231,7 @@ types:
         type: u1
         doc: 'Number of keys in index'
       - id: flags
-        size: 8
+        size: 1
         type: irt_flags
   index_b_tree_page:
     seq:
@@ -232,11 +245,13 @@ types:
         type: u2
       - id: length
         type: u2
+      - id: id
+        type: u1
       - id: level
-        type: u2
+        type: u1
         doc: '0 = leaf'
-#      - id: btree_nodes
-#        type: btree_nodes
+      - id: btree_nodes
+        size: length
   blob_page:
     seq:
       - id: lead_page
@@ -248,9 +263,9 @@ types:
       - id: pad
         type: u2
         doc: unused
-      - id: page
-        type: s4
-        doc: page number if level 1
+      #next page if flags in header=blp_pointers
+      - id: data
+        size: length
   generator_page:
     seq:
       - id: sequence
@@ -335,7 +350,7 @@ types:
         enum: backup_mask
       - id: shutdown_mask_full
         type: b1
-  dpr_record:        
+  dpr_record:
     seq:
       - id: offset
         type: u2
