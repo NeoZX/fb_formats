@@ -331,28 +331,44 @@ types:
     seq:
       - id: active_shadow
         type: b1
+        doc: '0x1'
       - id: no_force_write
         type: b1
+        doc: '0x2'
       - id: crypt_process
         type: b1
-      - id: encrypted
-        type: b1
+        doc: '0x4'
       - id: no_reserve
         type: b1
-      - id: shutdown_mask_sysdba
-        type: b1
+        doc: '0x8'
       - id: sql_dialect_3
         type: b1
+        doc: '0x10'
       - id: read_only
         type: b1
+        doc: '0x20'
       - id: encrypted
         type: b1
-        doc: 'Database is encrypted'
+        doc: '0x40 Database is encrypted'
+      - id: shutdown_mask_sysdba
+        type: b1
+        doc: '0x80'
+      - id: unused
+        type: b1
+        doc: '0x100'
       - id: backup_mask
         type: b2
         enum: backup_mask
+        doc: '0xc00'
       - id: shutdown_mask_full
         type: b1
+        doc: '0x1000'
+      - id: replica_read_only
+        type: b1
+        doc: '0x2000'
+      - id: replica_read_write
+        type: b1
+        doc: '0x4000'
   dpr_record:
     seq:
       - id: offset
