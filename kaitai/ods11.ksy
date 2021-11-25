@@ -245,13 +245,49 @@ types:
         type: u2
       - id: length
         type: u2
+        doc: 'length include page header'
       - id: id
         type: u1
       - id: level
         type: u1
         doc: '0 = leaf'
+      - id: first_node_offset
+        type: u2
+      - id: jump_area_size
+        type: u2
+      - id: jumpers
+        type: u1
+      - id: jump_nodes
+        type: jump_node
+        repeat: expr
+        repeat-expr: jumpers
       - id: btree_nodes
-        size: length
+        #type: btree_node
+        size: length - first_node_offset
+  jump_node:
+    seq:
+      - id: jn_node_pointer
+        type: u1
+      - id: jn_prefix
+        type: u1
+      - id: jn_length
+        type: u1
+      - id: jn_offset
+        type: u1
+      - id: jn_data
+        size: jn_prefix
+  btree_node:
+    seq:
+      - id: prefix
+        type: u1
+      - id: length
+        type: u1
+      - id: some
+        size: 1
+      - id: size
+        type: u1
+      - id: data
+        size: size
   blob_page:
     seq:
       - id: lead_page
