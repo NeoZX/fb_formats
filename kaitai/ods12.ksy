@@ -26,6 +26,8 @@ types:
       - id: header
         type: page_header
       - id: data
+        #exclude view data if page encrypted
+        if: (flags_u1 < 0x80)
         type:
           switch-on: header.type
           cases:
@@ -39,6 +41,10 @@ types:
             'page_type::blob_page': blob_page
             'page_type::generator_page': generator_page
             'page_type::scn_page': scn_page
+    instances:
+      flags_u1:
+        pos: 0x1
+        type: u1
   page_header:
     seq:
       - id: type
@@ -69,6 +75,12 @@ types:
         doc: Used by nbackup
       - id: page_no
         type: u4
+  default_page_flags:
+    seq:
+      - id: unused
+        type: b7
+      - id: encrypted
+        type: b1
   pointer_page_flags:
     seq:
       - id: ppg_eof
@@ -85,6 +97,10 @@ types:
       - id: swept
         type: b1
       - id: secondary
+        type: b1
+      - id: unused
+        type: b2
+      - id: encrypted
         type: b1
   index_b_tree_page_flags:
     seq:
@@ -331,28 +347,38 @@ types:
     seq:
       - id: active_shadow
         type: b1
+        doc: '0x1'
       - id: no_force_write
         type: b1
+        doc: '0x2'
       - id: crypt_process
         type: b1
-      - id: encrypted
-        type: b1
+        doc: '0x4'
       - id: no_reserve
         type: b1
-      - id: shutdown_mask_sysdba
-        type: b1
+        doc: '0x8'
       - id: sql_dialect_3
         type: b1
+        doc: '0x10'
       - id: read_only
         type: b1
+        doc: '0x20'
       - id: encrypted
         type: b1
-        doc: 'Database is encrypted'
+        doc: '0x40 Database is encrypted'
+      - id: shutdown_mask_sysdba
+        type: b1
+        doc: '0x80'
+      - id: unused
+        type: b1
+        doc: '0x100'
       - id: backup_mask
         type: b2
         enum: backup_mask
+        doc: '0xc00'
       - id: shutdown_mask_full
         type: b1
+        doc: '0x1000'
   dpr_record:
     seq:
       - id: offset
