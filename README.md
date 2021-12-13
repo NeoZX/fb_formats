@@ -1,7 +1,7 @@
 [EN](README.md) [RU](README.ru.md)
 
 # About project
-This project contains a description of the file formats used in the Firebird (https://firebirdsql.org/) and Red Database (https://reddatabase.ru/) projects. Formats are described in  Kaitai Struct (https://kaitai.io/) language. Not all formats are fully described; a more complete and accurate description can be seen in the source codes of the projects.
+This project contains a description of the file formats used in the [Firebird](https://firebirdsql.org/) and [Red Database](https://reddatabase.ru/) projects. Formats are described in  [Kaitai Struct](https://kaitai.io/) language. Not all formats are fully described; a more complete and accurate description can be seen in the source codes of the projects.
 You can use these descriptions to develop your own utilities for working with structures used in Firebird projects.
 
 ## File Database
