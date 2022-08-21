@@ -257,8 +257,9 @@ types:
         type: jump_node
         repeat: expr
         repeat-expr: jumpers
+        if: jumpers > 0
       - id: btree_nodes
-        #type: btree_node
+        #type: btree_nodes
         size: length - first_node_offset
   jump_node:
     seq:
@@ -271,14 +272,31 @@ types:
       - id: jn_offset
         type: u1
       - id: jn_data
+        type:
+          switch-on: jn_prefix
+          cases:
+            5: jump_info
         size: jn_prefix
+  jump_info:
+    seq:
+      - id: first_node_offset
+        type: u2
+      - id: jump_area_size
+        type: u2
+      - id: jumpers
+        type: u1
+  btree_nodes:
+    seq:
+      - id: btree_node
+        type: btree_node
+        repeat: eos
   btree_node:
     seq:
       - id: prefix
         type: u1
       - id: length
         type: u1
-      - id: some
+      - id: number
         size: 1
       - id: size
         type: u1
@@ -395,8 +413,10 @@ types:
         enum: hdr_clumplet_type
       - id: length
         type: u1
+        if: type != hdr_clumplet_type::end
       - id: data
         size: length
+        if: type != hdr_clumplet_type::end
   irt_flags:
     seq:
       - id: unique
@@ -457,4 +477,3 @@ enums:
     13: backup_guid
     14: repl_guid
     15: db_guid
-
