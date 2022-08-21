@@ -5,7 +5,7 @@ from sys import argv
 
 
 def fb_guid2str(fb_guid):
-    guid = '{{{:X}{:X}{:X}{:X}-{:X}{:X}-{:X}{:X}-{:X}{:X}-{:X}{:X}{:X}{:X}{:X}{:X}}}'.format(
+    guid = '{{{:02X}{:02X}{:02X}{:02X}-{:02X}{:02X}-{:02X}{:02X}-{:02X}{:02X}-{:02X}{:02X}{:02X}{:02X}{:02X}{:02X}}}'.format(
         fb_guid[3], fb_guid[2], fb_guid[1], fb_guid[0],
         fb_guid[5], fb_guid[4], fb_guid[7], fb_guid[6], fb_guid[8], fb_guid[9],
         fb_guid[10], fb_guid[11], fb_guid[12], fb_guid[13], fb_guid[14], fb_guid[15])
