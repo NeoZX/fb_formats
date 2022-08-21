@@ -17,6 +17,9 @@
 * rdb_replication_status_file.ksy - статус обработки репликационных журналов. Используется в Red Database 2.6, Red Database 3.0 и HQBird 3.0.
 * fb4_replication_status_file.ksy - статус обработки репликационных журналов. Используется в Firebird 4.0 и Red Database 4.0.
 
+## nbackup
+* nbak_header.ksy - Заголовки инкрементной/дифференциальной резервной копии, созданной утилитой nbackup.
+
 # Требования
 Для генерации классов используется утилита ksc (kaitai-struct-compiler) проекта Kaitai Struct.
 Для Python должен быть установлен пакет kaitaistruct.

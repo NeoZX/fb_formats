@@ -15,7 +15,10 @@ You can use these descriptions to develop your own utilities for working with st
 
 ## Status file
 * rdb_replication_status_file.ksy - the status of the replication logs application file. Used in Red Database 2.6, Red Database 3.0 and HQBird 3.0.
-* fb4_replication_status_file.ksy - статус файл применения репликационных журналов. Используется в Firebird 4.0 и Red Database 4.0.
+* fb4_replication_status_file.ksy - the status of the replication logs application file. Used in Firebird 4.0 и Red Database 4.0.
+
+## nbackup
+* nbak_header.ksy - Incremental/differential backup headers created by nbackup utility.
 
 # Requirements
 The ksc utility is used to generate classes. 
