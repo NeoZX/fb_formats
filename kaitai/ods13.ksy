@@ -1,5 +1,5 @@
 meta:
-  id: ods12
+  id: ods13
   title: Firebird 4.X and Red Database 4.X format ODS13
   application: firebird
   endian: le
