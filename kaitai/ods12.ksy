@@ -6,7 +6,7 @@ meta:
   bit-endian: le
 doc: | 
   Firebird file formats
-doc-ref: src/jrd/ods.h
+doc-ref: firebird/src/jrd/ods.h
 seq:
   - id: pages
     type: pages
