@@ -9,18 +9,14 @@ doc: |
 doc-ref: firebird/src/jrd/ods.h
 seq:
   - id: pages
-    type: pages
+    type: page
+    size: _root.page_size
+    repeat: eos
 instances:
   page_size:
     pos: 0x10
     type: u2
 types:
-  pages:
-    seq:
-      - id: page
-        type: page
-        size: _root.page_size
-        repeat: eos
   page:
     seq:
       - id: header
