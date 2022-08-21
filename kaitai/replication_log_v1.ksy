@@ -12,8 +12,8 @@ seq:
     size: 48
     type: header
   - id: segments
-    type: segments
-    size: header.segments_length
+    type: segment
+    repeat: eos
 types:
   header:
     seq:
@@ -36,11 +36,6 @@ types:
     instances:
       segments_length:
         value: 'journal_length == 0 ? 0 : journal_length - 48'
-  segments:
-    seq:
-      - id: segment
-        type: segment
-        repeat: eos
   segment:
     seq:
       - id: isc_date
