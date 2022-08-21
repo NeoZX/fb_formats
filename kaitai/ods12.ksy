@@ -187,7 +187,10 @@ types:
         type: s4
         doc: 'High word of the next attachment counter'
       - id: tra_high
-        size: 4
+        #size: 8
+        type: u2
+        repeat: expr
+        repeat-expr: 4
         doc: 'High words of the transaction counters'
       - id: clumplets
         type: hdr_clumplet
@@ -449,6 +452,7 @@ enums:
     7: backup_guid
     8: crypt_key
     9: crypt_hash
+    11: database_guid
   cpu_type:
     0: intel
     1: amd
