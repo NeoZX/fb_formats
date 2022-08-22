@@ -1,21 +1,21 @@
 [EN](README.md) [RU](README.ru.md)
 
 # О проекте
-В данном проекте собраны описание форматов файлов используемых в проектах [Firebird](https://firebirdsql.org/) и [Red Database](https://reddatabase.ru/). Форматы описаны на языке [Kaitai Struct](https://kaitai.io/). Не все форматы описаны полностью, более полное и точное описание можно увидеть в исходных кодах проектов.
+В данном проекте собраны описание форматов файлов используемых в проектах [Firebird](https://firebirdsql.org/) и [RedDatabase](https://reddatabase.ru/). Форматы описаны на языке [Kaitai Struct](https://kaitai.io/). Не все форматы описаны полностью, более полное и точное описание можно увидеть в исходных кодах проектов.
 Эти описания Вы можете использовать для разработки своих утилит для работы со структурами используемых в проектах Firebird.
 
 ## Файлы БД
 * ods11.ksy - формат файла БД ODS11, используется в Firebird 2.x, RedDatabase 2.x.
 * ods12.ksy - формат файла БД ODS12, используется в Firebird 3.x, RedDatabase 3.x.
-* ods13.ksy - формат файла БД ODS13, используется в Firebird 4.x, RedDatabase 4.x
+* ods13.ksy - формат файла БД ODS13, используется в Firebird 4.x.
 
 ## Репликационные журналы
-* replication_log_v1.ksy - репликационный журнал. Используется в Red Database 2.6 (протокол 1), Red Database 3.0 и HQBird 3.0 (протокол 2).
-* change_log_v1.ksy - журнал изменений. Улучшенная версия репликационного журнала. Используется в RedDatabase 4.0 и Firebird 4.0.
+* replication_log_v1.ksy - репликационный журнал. Используется в RedDatabase 2.6 (протокол 1), RedDatabase 3.0 и HQBird 3.0 (протокол 2).
+* change_log_v1.ksy - журнал изменений. Улучшенная версия репликационного журнала. Используется в Firebird 4.0.
 
 ## Статус файл
-* rdb_replication_status_file.ksy - статус обработки репликационных журналов. Используется в Red Database 2.6, Red Database 3.0 и HQBird 3.0.
-* fb4_replication_status_file.ksy - статус обработки репликационных журналов. Используется в Firebird 4.0 и Red Database 4.0.
+* rdb_replication_status_file.ksy - статус обработки репликационных журналов. Используется в RedDatabase 2.6, RedDatabase 3.0 и HQBird 3.0.
+* fb4_replication_status_file.ksy - статус обработки репликационных журналов. Используется в Firebird 4.0.
 
 ## nbackup
 * nbak_header.ksy - Заголовки инкрементной/дифференциальной резервной копии, созданной утилитой nbackup.
