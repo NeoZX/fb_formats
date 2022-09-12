@@ -3,3 +3,4 @@ replication_log_v1.py
 rdb_replication_status_file.py
 fb4_replication_status_file.py
 nbak_header.py
+gbak_header.py

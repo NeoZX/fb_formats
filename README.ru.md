@@ -20,6 +20,9 @@
 ## nbackup
 * nbak_header.ksy - Заголовки инкрементной/дифференциальной резервной копии, созданной утилитой nbackup.
 
+## gbak
+* gbak_header.ksy - Заголовки файла резервной копии созданного утилитой gbak.
+
 # Требования
 Для генерации классов используется утилита ksc (kaitai-struct-compiler) проекта Kaitai Struct.
 Для Python должен быть установлен пакет kaitaistruct.
@@ -28,7 +31,7 @@
 Утилитой kaitai-struct-visualizer можно просматривать бинарные файлы по файлам описаний ksy.
 Просмотр файла БД employee.fdb СУБД Firebird 4:
 
-    ksv employee.fdb kaitai/ods11.fdb
+    ksv employee.fdb kaitai/ods11.ksy
 
 Примеры использования на Python: 
 

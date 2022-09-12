@@ -20,6 +20,9 @@ You can use these descriptions to develop your own utilities for working with st
 ## nbackup
 * nbak_header.ksy - Incremental/differential backup headers created by nbackup utility.
 
+## gbak
+* gbak_header.ksy - backup headers created by gbak utility.
+
 # Requirements
 The ksc utility is used to generate classes. 
 The kaitaistruct package must be installed for Python.
@@ -28,7 +31,7 @@ The kaitaistruct package must be installed for Python.
 Using the kaitai-struct-visualizer utility, you can view binaries by ksy description files.
 View DB file employee.fdb RDBMS Firebird 4:
 
-    ksv employee.fdb kaitai/ods11.fdb
+    ksv employee.fdb kaitai/ods11.ksy
 
 Examples of use in Python: 
 
