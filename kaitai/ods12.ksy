@@ -233,9 +233,37 @@ types:
       - id: min_space
         type: u2
         doc: 'Lowest slot with space available'
-      - id: page
+      - id: align
+        size: 2
+        doc: 'Array size, but not used'
+      - id: pages
         type: u4
         doc: 'Data page vector'
+        repeat: expr
+        repeat-expr: count
+      - id: pages_flags
+        type: ppg_dp_flags
+        size: 1
+        doc: 'Data page flags'
+        repeat: expr
+        repeat-expr: count
+  ppg_dp_flags:
+    seq:
+      - id: full
+        type: b1
+        doc: 'Data page is FULL'
+      - id: large
+        type: b1
+        doc: 'Large object is on data page'
+      - id: swept
+        type: b1
+        doc: 'Sweep has nothing to do on data page'
+      - id: secondary
+        type: b1
+        doc: 'Primary record versions not stored on data page'
+      - id: empty
+        type: b1
+        doc: 'Data page is empty'
   data_page:
     seq:
       - id: sequence

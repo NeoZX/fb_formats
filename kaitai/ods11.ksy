@@ -187,9 +187,11 @@ types:
       - id: max_space
         type: u2
         doc: 'Highest slot with space available'
-      - id: page
-        type: s4
+      - id: pages
+        type: u4
         doc: 'Data page vector'
+        repeat: expr
+        repeat-expr: count
   data_page:
     seq:
       - id: sequence
