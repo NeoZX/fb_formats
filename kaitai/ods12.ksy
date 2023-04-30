@@ -319,7 +319,7 @@ types:
         doc: 'relation id for consistency'
       - id: length
         type: u2
-        doc: 'length of data in bucket'
+        doc: 'length of data in bucket (offset end of data on page)'
       - id: id
         type: u1
         doc: 'index id for consistency'
@@ -336,7 +336,7 @@ types:
         type: u1
         doc: 'number of jump nodes'
       - id: btree_nodes
-        size: length
+        size: length - 39
   blob_page:
     seq:
       - id: lead_page
