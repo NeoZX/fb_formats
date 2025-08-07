@@ -7,7 +7,8 @@
 ## Файлы БД
 * ods11.ksy - формат файла БД ODS11, используется в Firebird 2.x, RedDatabase 2.x.
 * ods12.ksy - формат файла БД ODS12, используется в Firebird 3.x, RedDatabase 3.x.
-* ods13.ksy - формат файла БД ODS13, используется в Firebird 4.x.
+* ods13.ksy - формат файла БД ODS13, используется в Firebird 4.x/5.x, RedDatabase 5.x.
+* ods14.ksy - формат файла БД ODS14. используется в Firebird 6.x, RedDatabase 6.x.
 
 ## Репликационные журналы
 * replication_log_v1.ksy - репликационный журнал. Используется в RedDatabase 2.6 (протокол 1), RedDatabase 3.0 и HQBird 3.0 (протокол 2).

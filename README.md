@@ -7,7 +7,8 @@ You can use these descriptions to develop your own utilities for working with st
 ## File Database
 * ods11.ksy - on-disk-structure version 11. Used in Firebird 2.x, RedDatabase 2.x.
 * ods12.ksy - on-disk-structure version 12. Used in Firebird 3.x, RedDatabase 3.x.
-* ods13.ksy - on-disk-structure version 13. Used in Firebird 4.x.
+* ods13.ksy - on-disk-structure version 13. Used in Firebird 4.x/5.x, RedDatabase 5.x.
+* ods14.ksy - on-disk-structure version 14. Used in Firebird 6.x, RedDatabase 6.x.
 
 ## Replication logs
 * replication_log_v1.ksy - replication log. Used in RedDatabase 2.6 (protocol 1), RedDatabase 3.0 и HQBird 3.0 (protocol 2).
