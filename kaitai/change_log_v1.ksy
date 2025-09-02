@@ -90,11 +90,11 @@ types:
       - id: org_length
         type: s4
       - id: org_record
-        size: org_length      
+        size: org_length
       - id: new_length
         type: s4
       - id: new_record
-        size: org_length      
+        size: org_length
   deleterecord:
     seq:
       - id: atom_id
