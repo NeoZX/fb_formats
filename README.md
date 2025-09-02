@@ -12,7 +12,7 @@ You can use these descriptions to develop your own utilities for working with st
 
 ## Replication logs
 * replication_log_v1.ksy - replication log. Used in RedDatabase 2.6 (protocol 1), RedDatabase 3.0 и HQBird 3.0 (protocol 2).
-* change_log_v1.ksy - change log. Improved version of the replication log. Used in Firebird 4.0.
+* change_log_v1.ksy - change log. Improved version of the replication log. Used in Firebird 4/5 (protocol 1), Firebird 6 (protocol 2).
 
 ## Status file
 * rdb_replication_status_file.ksy - the status of the replication logs application file. Used in RedDatabase 2.6, RedDatabase 3.0 and HQBird 3.0.

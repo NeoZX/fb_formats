@@ -6,7 +6,8 @@ meta:
   bit-endian: le
 doc: | 
   Firebird change log version 1.
-  Protocol 1 is used in Firebird 4.0
+  Protocol 1 is used in Firebird 4/5
+  Protocal 2 is used in Firebird 6
 seq:
   - id: header
     size: 48
@@ -77,6 +78,9 @@ types:
             'tags::defineatom': defineatom
   insertrecord:
     seq:
+      - id: schema_id
+        type: s4
+        if: _parent._parent._parent.protocol == 2
       - id: atom_id
         type: s4
       - id: length
@@ -85,6 +89,9 @@ types:
         size: length
   updaterecord:
     seq:
+      - id: schema_id
+        type: s4
+        if: _parent._parent._parent.protocol == 2
       - id: atom_id
         type: s4
       - id: org_length
@@ -97,6 +104,9 @@ types:
         size: org_length
   deleterecord:
     seq:
+      - id: schema_id
+        type: s4
+        if: _parent._parent._parent.protocol == 2
       - id: atom_id
         type: s4
       - id: length
@@ -132,6 +142,9 @@ types:
     seq:
       - id: atom_id
         type: s4
+      - id: schema_search_path_atom
+        type: s4
+        if: _parent._parent._parent.protocol == 2
       - id: charset
         type: s1
         enum: charsets
@@ -141,6 +154,9 @@ types:
         size: length
   setsequence:
     seq:
+      - id: schema_search_path_atom
+        type: s4
+        if: _parent._parent._parent.protocol == 2
       - id: atom_id
         type: s4
       - id: value
