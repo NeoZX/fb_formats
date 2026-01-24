@@ -17,3 +17,6 @@ nbak_header.py: kaitai/nbak_header.ksy
 
 gbak_header.py: kaitai/gbak_header.ksy
 	ksc -t python kaitai/gbak_header.ksy
+
+clean:
+	rm -f change_log_v1.py replication_log_v1.py rdb_replication_status_file.py fb4_replication_status_file.py nbak_header.py gbak_header.py
