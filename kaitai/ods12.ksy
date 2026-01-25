@@ -412,6 +412,67 @@ types:
         type: u2
       - id: length
         type: u2
+    instances:
+      rhd:
+        pos: offset
+        type: rhd
+        size: length
+  rhd:
+    seq:
+      - id: tra
+        type: u4
+      - id: b_page
+        type: u4
+      - id: b_line
+        type: u2
+      - id: flags
+        type: rhd_flags
+        size: 2
+      - id: format
+        doc: format version
+        type: u1
+      - id: tra_high
+        doc: higher bits of transaction id
+        type: u2
+        if: flags.long_tranum
+      - id: f_page
+        doc: for fragmented record next fragment page
+        type: u4
+        if: flags.fragment
+      - id: f_line
+        doc: for fragmented record next fragment line
+        type: u4
+        if: flags.fragment
+      - id: record
+        size-eos: true
+  rhd_flags:
+    seq:
+      - id: deleted
+        type: b1
+      - id: chain
+        type: b1
+      - id: fragment
+        type: b1
+      - id: incomplete
+        type: b1
+      - id: blob
+        type: b1
+      - id: stream_blob
+        type: b1
+      - id: delta
+        type: b1
+      - id: large
+        type: b1
+      - id: damaged
+        type: b1
+      - id: gc_active
+        type: b1
+      - id: uk_modified
+        type: b1
+      - id: long_tranum
+        type: b1
+      - id: not_packed
+        type: b1
   hdr_clumplet:
     seq:
       - id: type
