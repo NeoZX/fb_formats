@@ -49,11 +49,11 @@ types:
       - id: flags
         size: 2
         type: flags
-      - id: length
+      - id: len_operations
         type: u4
       - id: operations
         type: operations
-        size: length
+        size: len_operations
   operations:
     seq:
       - id: operation
@@ -83,10 +83,10 @@ types:
         if: _parent._parent._parent.protocol == 2
       - id: atom_id
         type: s4
-      - id: length
+      - id: len_record
         type: s4
       - id: record
-        size: length
+        size: len_record
   updaterecord:
     seq:
       - id: schema_id
@@ -94,14 +94,14 @@ types:
         if: _parent._parent._parent.protocol == 2
       - id: atom_id
         type: s4
-      - id: org_length
+      - id: len_org_record
         type: s4
       - id: org_record
-        size: org_length
-      - id: new_length
+        size: len_org_record
+      - id: len_new_record
         type: s4
       - id: new_record
-        size: org_length
+        size: len_new_record
   deleterecord:
     seq:
       - id: schema_id
@@ -109,10 +109,10 @@ types:
         if: _parent._parent._parent.protocol == 2
       - id: atom_id
         type: s4
-      - id: length
+      - id: len_record
         type: s4
       - id: record
-        size: length
+        size: len_record
   storeblob:
     seq:
       - id: blob_high
@@ -123,21 +123,21 @@ types:
         type: blob
         # todo add eos
         repeat: until
-        repeat-until: _.length == 0
+        repeat-until: _.len_blob_data == 0
   blob:
     seq:
-      - id: length
+      - id: len_blob_data
         type: s2
       - id: blob_data
-        size: length
+        size: len_blob_data
   executesql:
     seq:
       - id: atom_id
         type: s4
-      - id: length
+      - id: len_text
         type: s4
       - id: text
-        size: length
+        size: len_text
   executesqlintl:
     seq:
       - id: atom_id
@@ -148,10 +148,10 @@ types:
       - id: charset
         type: s1
         enum: charsets
-      - id: length
+      - id: len_text
         type: s4
       - id: text
-        size: length
+        size: len_text
   setsequence:
     seq:
       - id: schema_search_path_atom
@@ -163,10 +163,10 @@ types:
         type: s8
   defineatom:
     seq:
-      - id: length
+      - id: len_name
         type: u1
       - id: name
-        size: length
+        size: len_name
   flags:
     seq:
       - id: block_begin_trans

@@ -42,11 +42,11 @@ types:
         type: u4
       - id: isc_time
         type: u4
-      - id: packets_length
+      - id: len_packets
         type: u4
       - id: packets
         type: packets
-        size: packets_length
+        size: len_packets
     instances:
       unixtime:
         value: '(isc_date - 40617 + 30) * 86400 + isc_time / 1000'
@@ -142,10 +142,10 @@ types:
           cases:
             1: s4
             2: s8
-      - id: length
+      - id: len_exec
         type: u4
       - id: exec
-        size: length
+        size: len_exec
   tra_exec_intl:
     seq:
       - id: charset
@@ -157,10 +157,10 @@ types:
           cases:
             1: s4
             2: s8
-      - id: length
+      - id: len_exec
         type: u4
       - id: exec
-        size: length
+        size: len_exec
   isc_dpb_data:
     seq:
       - id: dpb_length
@@ -224,25 +224,25 @@ types:
         type: u1
       - id: data
         type: str
-        encoding: utf-8
+        encoding: UTF-8
         size: size
   s_data:
     seq:
-      - id: size
+      - id: len_data
         type: u1
       - id: data
-        size: size
+        size: len_data
   dpb_auth_block:
     seq:
       - id: size
         type: u1
       - id: some1
         type: u1
-      - id: block_parameters_size
+      - id: len_block_parameters
         type: u4
       - id: block_parameters
         type: dpb_auth_block_parameters
-        size: block_parameters_size
+        size: len_block_parameters
   dpb_auth_block_parameters:
     seq:
       - id: dpb_auth_block_parameter
@@ -252,10 +252,10 @@ types:
     seq:
       - id: tag
         type: u1
-      - id: size
+      - id: len_data
         type: u4
       - id: data
-        size: size
+        size: len_data
   tra_blob:
     seq:
       - id: tra
@@ -268,10 +268,10 @@ types:
         type: s4
       - id: low_id
         type: s4
-      - id: length
+      - id: len_blob
         type: u4
       - id: blob
-        size: length
+        size: len_blob
   tra_table_data:
     seq:
       - id: tra
@@ -286,10 +286,10 @@ types:
         type: str
         encoding: ASCII
         size: table_name_length
-      - id: data_length
+      - id: len_data
         type: u4
       - id: data
-        size: data_length
+        size: len_data
   tra_table_update_data:
     seq:
       - id: tra
@@ -304,14 +304,14 @@ types:
         type: str
         encoding: ASCII
         size: table_name_length
-      - id: org_data_length
+      - id: len_org_data
         type: u4
       - id: org_data
-        size: org_data_length
-      - id: new_data_length
+        size: len_org_data
+      - id: len_new_data
         type: u4
       - id: new_data
-        size: new_data_length
+        size: len_new_data
   change_generator:
     seq:
       - id: gen_id
@@ -334,10 +334,10 @@ types:
         type: u4
       - id: flags
         type: u4
-      - id: length
+      - id: len_data
         type: u4
       - id: data
-        size: length
+        size: len_data
   describetable:
     seq:
       - id: table_name_length
@@ -366,10 +366,10 @@ types:
         type: str
         encoding: ASCII
         size: name_length
-      - id: desc_length
+      - id: len_desc
         type: u4
       - id: desc
-        size: desc_length
+        size: len_desc
 enums:
   journal_states:
     0: free
